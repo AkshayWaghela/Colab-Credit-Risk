@@ -1,28 +1,20 @@
-# Data and generated files
 data/
+outputs/
+logs/
 *.parquet
 *.parquet.zip
 *.snappy.parquet
-outputs/
-logs/
-*.log
-
-# Python / notebook environment
-__pycache__/
-*.py[cod]
-.ipynb_checkpoints/
-.venv/
-venv/
-env/
-
-# Secrets and local credentials
 .env
 .env.*
 !.env.example
 *token*
 *secret*
 credentials.json
-
-# OS files
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
 .DS_Store
 Thumbs.db
+project_config.json

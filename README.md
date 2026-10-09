@@ -1,30 +1,25 @@
 # Credit Risk Scoring & Probability of Default
 
 An experimental credit-risk analytics project using engineered previous-application
-features, XGBoost, and sigmoid probability calibration.
+features, XGBoost, and sigmoid (Platt) calibration.
 
-## Model validation snapshot
+## Validation snapshot
 
-- Time-based validation period: July–October 2020
+- Time-based holdout: July–October 2020
 - ROC-AUC: approximately 0.706
+- Gini: approximately 0.412
 - Average precision: approximately 0.053
-- Calibrated Brier score: approximately 0.0204
+- Brier score: approximately 0.0204
 
-These results are dataset-specific and do not establish production suitability.
-The low default prevalence means precision-recall performance is important.
-Calibration and model performance may change across populations and time.
+These are historical holdout results, not a guarantee of future performance.
+The low default prevalence also means average precision should be interpreted
+against the baseline prevalence.
 
-## Technology
+## Project components
 
-Python, Pandas, scikit-learn, XGBoost, joblib, Streamlit.
-
-## Repository contents
-
-- `app.py` — Streamlit demonstration
-- `models/` — trained model, matching sigmoid calibrator, feature order
+- `app.py` — Streamlit scoring demonstration
+- `models/` — trained XGBoost model, sigmoid calibrator, and ordered feature list
 - `requirements.txt` — deployment dependencies
-
-The raw and processed datasets are intentionally excluded from this repository.
 
 ## Run locally
 
@@ -33,19 +28,20 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Deployment
-
-Deploy this repository using Streamlit Community Cloud and select `app.py`
-as the app entry point.
-
 ## Important limitations
 
-This is an educational portfolio project, not a lending decision system.
-The demo's manually entered engineered features may not correspond to valid
-applicant records. Do not use its estimates for real credit decisions.
+This is a portfolio/educational demonstration, not a production credit decision
+system. The app's manually entered values are not a substitute for the original
+feature-engineering pipeline. Do not enter real customer information or use
+outputs to make lending decisions. Model validation, calibration monitoring,
+fairness assessment, governance, and independent review would be required before
+any real-world use.
 
-The XGBoost model and sigmoid calibrator must be used together. The calibrator
-was fitted for this specific model and training procedure.
+## Data and reproducibility
+
+Datasets and generated Parquet files are intentionally excluded from this
+repository. Recreate the engineered features using the original project pipeline
+and the relevant dataset documentation before interpreting model outputs.
 
 ## Author
 
