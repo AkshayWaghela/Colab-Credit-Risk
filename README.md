@@ -1,48 +1,28 @@
-# Credit Risk Scoring & Probability of Default
+# Model Diagnostics Studio
 
-An experimental credit-risk analytics project using engineered previous-application
-features, XGBoost, and sigmoid (Platt) calibration.
+Streamlit app for dataset upload, target/predictor selection, model fitting, validation metrics, and residual diagnostics.
 
-## Validation snapshot
-
-- Time-based holdout: July–October 2020
-- ROC-AUC: approximately 0.706
-- Gini: approximately 0.412
-- Average precision: approximately 0.053
-- Brier score: approximately 0.0204
-
-These are historical holdout results, not a guarantee of future performance.
-The low default prevalence also means average precision should be interpreted
-against the baseline prevalence.
-
-## Project components
-
-- `app.py` — Streamlit scoring demonstration
-- `models/` — trained XGBoost model, sigmoid calibrator, and ordered feature list
-- `requirements.txt` — deployment dependencies
+## Features
+- CSV and Excel upload
+- Choose dependent variable and multiple independent variables
+- Classification and regression models
+- Validation metrics
+- Residual distribution and residuals-versus-predictions plots
+- For binary classification: ROC, precision–recall, calibration, and confusion matrix
+- Download validation predictions and residuals as CSV
+- Configurable row cap for resource control
 
 ## Run locally
-
 ```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Important limitations
+## Deploy to Streamlit Community Cloud
+Push `app.py`, `requirements.txt`, and `README.md` to GitHub, then create a Streamlit app using `app.py` as the entry point. Upload data through the app rather than committing private data or credentials to the repository.
 
-This is a portfolio/educational demonstration, not a production credit decision
-system. The app's manually entered values are not a substitute for the original
-feature-engineering pipeline. Do not enter real customer information or use
-outputs to make lending decisions. Model validation, calibration monitoring,
-fairness assessment, governance, and independent review would be required before
-any real-world use.
-
-## Data and reproducibility
-
-Datasets and generated Parquet files are intentionally excluded from this
-repository. Recreate the engineered features using the original project pipeline
-and the relevant dataset documentation before interpreting model outputs.
-
-## Author
-
-Akshay Waghela
+## Notes
+Binary classification is supported. For credit-risk evaluation, prefer a time-based validation split for final analysis. This app is for exploratory diagnostics and not production lending decisions.
